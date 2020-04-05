@@ -1,14 +1,9 @@
-buildscript {
-    repositories {
-        mavenLocal()
-    }
-}
-
-
 plugins {
     id 'java'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java-library'
     id 'maven-publish'
+    id 'signing'
 }
 
 

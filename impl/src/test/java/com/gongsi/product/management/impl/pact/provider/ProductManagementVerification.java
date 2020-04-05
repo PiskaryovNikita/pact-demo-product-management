@@ -53,4 +53,9 @@ public class ProductManagementVerification {
 
     }
 
+    @State("create order state")
+    public void setupBeforeCreateOrder() {
+
+    }
+
 }

@@ -1,13 +1,22 @@
 plugins {
     id 'au.com.dius.pact' version '4.0.0'
-    id "org.ajoberstar.grgit" version "1.6.0"
+}
+
+def getGitBranch() {
+    def branch = ""
+    def proc = "git rev-parse --abbrev-ref HEAD".execute()
+    proc.in.eachLine { line -> branch = line }
+    proc.err.eachLine { line -> println line }
+    proc.waitFor()
+    println branch
+    branch
 }
 
 pact {
     publish {
         providerVersion = project.version
         pactBrokerUrl = 'http://localhost'
-        tags = ["master"]
+        tags = [getGitBranch()]
     }
 }
 
@@ -32,7 +41,8 @@ test {
     // also use --continue argument to let tests publish verification result in case tests failures
     if (project.hasProperty("pact.publish.verification.result")) {
         println 'Pact: Publishing provider verification result is enabled'
-        jvmArgs '-Dpact.verifier.publishResults=true', "-Dpact.provider.version=${project.version}"
+        jvmArgs '-Dpact.verifier.publishResults=true', "-Dpact.provider.version=${project.version}",
+                "-Dpactbroker.tags=${getGitBranch()}"
     }
 }
 
