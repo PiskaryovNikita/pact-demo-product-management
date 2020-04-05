@@ -5,12 +5,12 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.2.2.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <relativePath /> <!-- lookup parent from repository -->
   </parent>
 
   <groupId>com.github.piskaryovnikita</groupId>
   <artifactId>product-management-api</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOT</version>
 
   <url>https://github.com/PiskaryovNikita/pact-demo-product-management</url>
 
@@ -41,7 +41,7 @@
     <connection>scm:git:git://github.com/dexecutor/dexecutor-core.git</connection>
     <developerConnection>scm:git:git@github.com:PiskaryovNikita/pact-demo-product-management.git</developerConnection>
     <url>https://github.com/PiskaryovNikita/pact-demo-product-management</url>
-    <tag>product-management-api-0.0.1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <distributionManagement>
