@@ -1,0 +1,39 @@
+plugins {
+    id 'au.com.dius.pact' version '4.0.0'
+    id "org.ajoberstar.grgit" version "1.6.0"
+}
+
+pact {
+    publish {
+        providerVersion = project.version
+        pactBrokerUrl = 'http://localhost'
+        tags = ["master"]
+    }
+}
+
+dependencies {
+    implementation project(':product-management-api')
+
+    testCompile 'au.com.dius:pact-jvm-consumer:4.0.1'
+    testCompile 'au.com.dius:pact-jvm-consumer-junit:4.0.1'
+    testCompile 'au.com.dius:pact-jvm-core-model:4.0.1'
+    testCompile 'au.com.dius:pact-jvm-provider:4.0.1'
+    testCompile 'au.com.dius:pact-jvm-provider-junit:4.0.1'
+
+    testCompile 'org.jboss.resteasy:resteasy-undertow:3.6.1.Final'
+    testCompile 'io.undertow:undertow-servlet:2.0.29.Final'
+    testCompile 'io.undertow:undertow-core:2.0.29.Final'
+    testCompile 'org.jboss.resteasy:resteasy-jackson-provider:3.6.1.Final'
+    testCompile 'org.jboss.resteasy:resteasy-jaxb-provider:3.6.1.Final'
+}
+
+test {
+    // test will verify pacts and publish verification results,
+    // also use --continue argument to let tests publish verification result in case tests failures
+    if (project.hasProperty("pact.publish.verification.result")) {
+        println 'Pact: Publishing provider verification result is enabled'
+        jvmArgs '-Dpact.verifier.publishResults=true', "-Dpact.provider.version=${project.version}"
+    }
+}
+
+description = 'Product Management :: Implementation'
