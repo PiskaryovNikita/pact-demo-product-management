@@ -48,14 +48,18 @@ public class ProductManagementVerification {
         JaxRsServer.deploy("/api", productController);
     }
 
-    @State("get order state")
-    public void setupBeforeGetOrder() {
+    @State("get product state")
+    public void setupBeforeGetProduct() {
 
     }
 
-    @State("create order state")
-    public void setupBeforeCreateOrder() {
+    @State("create product state")
+    public void setupBeforeCreateProduct() {
 
     }
 
+    @State("update product state")
+    public void setupBeforeUpdateProduct() {
+
+    }
 }
