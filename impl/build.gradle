@@ -41,8 +41,9 @@ test {
     // also use --continue argument to let tests publish verification result in case tests failures
     if (project.hasProperty("pact.publish.verification.result")) {
         println 'Pact: Publishing provider verification result is enabled'
+        println "Current branch: ${project.getProperties()['git.branch.name']}"
         jvmArgs '-Dpact.verifier.publishResults=true', "-Dpact.provider.version=${project.version}",
-                "-Dpactbroker.tags=${getGitBranch()}"
+                "-Dpactbroker.tags=${project.getProperties()['git.branch.name']}"
     }
 }
 
