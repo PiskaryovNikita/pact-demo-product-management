@@ -24,4 +24,10 @@ public class ProductControllerImpl implements ProductController {
         // do some business logic, insert object in database
         return new ProductResponse(1L, "Keyboard", 2241.6);
     }
+
+    @Override
+    public ProductResponse updateProduct(ProductRequest request) {
+        // do some business logic, insert object in database
+        return new ProductResponse(request.getId(), "Keyboard", 2241.6);
+    }
 }
